@@ -22,13 +22,6 @@ class LinearBase:
         self.LR = LR
         self.maxIter = maxIter
 
-    def mseLoss(self, x, y, n):
-        return round(0.5 * np.sum((np.sum(x * self.weights, axis=1) + self.bias - y) ** 2), 4) / n
-
-    def ridgeLoss(self, X, Y, n, alpha):
-        return round(0.5 * (np.sum((np.sum(X * self.weights, axis=1) + self.bias - Y) ** 2) +
-                            alpha * np.sum(self.weights ** 2)) / n, 4)
-
     def _init_params(self, n):
         self.weights = np.random.rand(n)
         self.bias = np.random.rand()

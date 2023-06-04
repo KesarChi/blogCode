@@ -7,6 +7,9 @@ from base_linear import *
 
 
 class LinearRegression(LinearBase):
+    def mseLoss(self, x, y, n):
+        return round(0.5 * np.sum((np.sum(x * self.weights, axis=1) + self.bias - y) ** 2), 4) / n
+
     def fit(self, X, Y):
         self._init_params(len(X[0]))
         Loss = [self.mseLoss(X, Y, X.shape[0])]

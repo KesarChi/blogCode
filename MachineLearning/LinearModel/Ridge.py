@@ -11,6 +11,10 @@ class RidgeRegression(LinearBase):
         super(RidgeRegression, self).__init__(LR, maxIter)
         self.alpha = alpha
 
+    def ridgeLoss(self, X, Y, n, alpha):
+        return round(0.5 * (np.sum((np.sum(X * self.weights, axis=1) + self.bias - Y) ** 2) +
+                            alpha * np.sum(self.weights ** 2)) / n, 4)
+
     def fit(self, X, Y):
         self._init_params(len(X[0]))
         Loss = [self.ridgeLoss(X, Y, X.shape[0], self.alpha)]
