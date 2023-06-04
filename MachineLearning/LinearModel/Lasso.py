@@ -1,11 +1,10 @@
 # -*- coding = utf-8 -*-
 # Author: Shaochi(KesarChi) Wang
 # Institute: Beijing Institute Of Genomics, CAS.
-import numpy as np
+
 
 from base_linear import *
 import copy
-from sympy import diff, symbols
 
 
 class LassoRegression(LinearBase):
