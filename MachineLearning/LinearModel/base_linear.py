@@ -8,11 +8,30 @@ import seaborn as sns
 from sklearn.datasets import make_regression
 import numpy as np
 import warnings
+
 warnings.filterwarnings('ignore')
 
 
 def create_sample(n_sample=5000, n_feature=5):
     return make_regression(n_samples=n_sample, n_features=n_feature)
+
+
+def mseLoss(X, Y, n, w, b):
+    return round(0.5 * np.sum((np.sum(X * w, axis=1) + b - Y) ** 2) / n, 4)
+
+
+def lassoLoss(X, Y, n, w, b, alpha):
+    return round(0.5 * (np.sum((np.sum(X * w, axis=1) + b - Y) ** 2)) / n + alpha * np.sum(np.abs(w)), 4)
+
+
+def ridgeLoss(X, Y, n, w, b, alpha):
+    return round(0.5 * (np.sum((np.sum(X * w, axis=1) + b - Y) ** 2) +
+                        alpha * np.sum(w ** 2)) / n, 4)
+
+
+def elasticLoss(X, Y, n, w, b, alpha, rho):
+    return 0.5 / n * np.sum(np.sum(X * w, axis=1) + b - Y) ** 2 + alpha * rho * np.sum(
+        abs(w)) + 0.5 * alpha * (1 - rho) * np.sum(w ** 2)
 
 
 class LinearBase:
