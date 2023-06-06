@@ -1,7 +1,7 @@
 # -*- coding = utf-8 -*-
 # Author: Shaochi(KesarChi) Wang
 # Institute: Beijing Institute Of Genomics, CAS.
-import numpy as np
+
 
 from base_linear import *
 from sklearn.linear_model import LinearRegression as lr
