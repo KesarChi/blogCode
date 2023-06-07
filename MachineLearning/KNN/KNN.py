@@ -19,7 +19,7 @@ class KNN:
         self.Label = []
         self.N = 0
 
-    def train(self, X, Y):
+    def fit(self, X, Y):
         self.X = np.array(X)
         self.Label = Y
         self.N = X.shape[0]
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     train_X, test_X, train_Y, test_Y = train_test_split(X, Y, test_size=0.3, shuffle=True)
 
     model = KNN(k=5)
-    model.train(train_X, train_Y)
+    model.fit(train_X, train_Y)
     res_model = model.predict(test_X)
     evaluate(res_model, test_Y)
 
