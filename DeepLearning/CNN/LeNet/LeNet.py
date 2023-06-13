@@ -82,7 +82,7 @@ if __name__ == "__main__":
     logs.close()
     torch.save(net.state_dict(), "lenet.pth")
 
-
+# type [tensorboard --logdir=logs --port=6007] in Terminal, view train result via browser
 
 
 
