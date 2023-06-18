@@ -1,0 +1,3 @@
+[2023-06-18 10:14:32,301][train.py][line:21][INFO] There is no Pre-trained parameters for Model
+[2023-06-18 10:14:32,316][train.py][line:29][INFO] Optimizer SGD loaded
+[2023-06-18 10:38:02,565][train.py][line:61][INFO] Acc=0.828000009059906

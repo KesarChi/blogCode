@@ -1,0 +1,3 @@
+[2023-06-18 09:44:30,345][train.py][line:19][INFO] Pre-trained parameters loaded: lenet.pth
+[2023-06-18 09:44:30,358][train.py][line:29][INFO] Optimizer SGD loaded
+[2023-06-18 09:46:21,914][train.py][line:61][INFO] Acc=0.5539000034332275

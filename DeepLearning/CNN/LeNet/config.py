@@ -10,6 +10,6 @@ class Config:
     def __init__(self):
         self.DEVICE = torch.device('cuda')
         self.EPOCH = 10
-        self.MAX_LR = 1e-3
+        self.LR = 1e-3
         self.MOMENTUM = 0.9
 
