@@ -1,2 +1,7 @@
-**有帮助的话麻烦点个star, 非常感谢❤**
-**Your star will help me a lot❤**
+## Log
+- 2023.6.18: AlexNet
+- 2023.6.13: LeNet
+- 2023.6.07: KNN
+- 2023.6.06: ElasticNet
+- 2023.6.04: Lasso
+- 2023.6.01: LinearRegression, Ridge
