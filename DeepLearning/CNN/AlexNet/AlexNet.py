@@ -12,11 +12,10 @@ from myUtils.dataStep import *
 from myUtils.train import *
 from config import *
 import torch.nn as nn
-from torch.utils.data import random_split, DataLoader
 
 
 class AlexNet(nn.Module):
-    def __init__(self):
+    def __init__(self, classNums):
         super(AlexNet, self).__init__()
         self.model = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=96, kernel_size=11, stride=4),
@@ -41,33 +40,19 @@ class AlexNet(nn.Module):
             nn.Linear(in_features=4096, out_features=2048),
             nn.ReLU(),
             nn.Dropout(p=0.5),
-            nn.Linear(in_features=2048, out_features=5)
+            nn.Linear(in_features=2048, out_features=classNums)
         )
 
     def forward(self, x):
         return self.model(x)
 
 
-def dataLoad(data_path, label_map, batch=32):
-    totalSet = ImgClassifyDataset(data_path, list(label_map.keys())[0], label_map, config.data_trans)
-    for label in list(label_map.keys())[1:]:
-        tmp = ImgClassifyDataset(data_path, label, label_map, config.data_trans)
-        totalSet += tmp
-
-    train_size = int(0.7*len(totalSet))
-    test_size = len(totalSet) - train_size
-    trainSet, testSet = random_split(totalSet, [train_size, test_size])
-    trainSet, testSet = DataLoader(trainSet, batch_size=batch, shuffle=True), DataLoader(testSet, batch_size=batch, shuffle=True)
-    print("Train size: {}\nTest size: {}".format(train_size, test_size))
-    return trainSet, testSet, [train_size, test_size]
-
-
 config = Config()
 
 
 if __name__ == "__main__":
-    trainLoader, testLoader, data_size = dataLoad(config.data_path, config.label_map)
-    net = AlexNet().to(config.DEVICE)
+    trainLoader, testLoader, data_size = dataLoad(config)
+    net = AlexNet(classNums=5).to(config.DEVICE)
     LOSS_FUNC = nn.CrossEntropyLoss().to(config.DEVICE)
 
     train(net, trainLoader, testLoader, LOSS_FUNC, config, data_size[1], opt='sgd', model_name='alexnet')

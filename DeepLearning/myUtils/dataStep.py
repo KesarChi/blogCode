@@ -5,7 +5,7 @@
 
 from torchvision import datasets
 from torchvision import transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, random_split
 from torch.utils.data import Dataset
 import os
 from PIL import Image
@@ -53,4 +53,15 @@ class ImgClassifyDataset(Dataset):
         return len(self.img_dir)
 
 
+def dataLoad(config, batch=32):
+    totalSet = ImgClassifyDataset(config.data_path, list(config.label_map.keys())[0], config.label_map, config.data_trans)
+    for label in list(config.label_map.keys())[1:]:
+        tmp = ImgClassifyDataset(config.data_path, label, config.label_map, config.data_trans)
+        totalSet += tmp
 
+    train_size = int(0.7*len(totalSet))
+    test_size = len(totalSet) - train_size
+    trainSet, testSet = random_split(totalSet, [train_size, test_size])
+    trainSet, testSet = DataLoader(trainSet, batch_size=batch, shuffle=True), DataLoader(testSet, batch_size=batch, shuffle=True)
+    print("Train size: {}\nTest size: {}".format(train_size, test_size))
+    return trainSet, testSet, [train_size, test_size]
