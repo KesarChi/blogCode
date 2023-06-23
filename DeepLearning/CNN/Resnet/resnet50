@@ -1,0 +1,3 @@
+[2023-06-23 10:51:04,453][train.py][line:19][INFO] Pre-trained parameters loaded: resnet50.pth
+[2023-06-23 10:51:04,466][train.py][line:29][INFO] Optimizer SGD loaded
+[2023-06-23 10:57:26,146][train.py][line:61][INFO] Acc=0.6946666836738586
