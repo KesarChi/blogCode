@@ -3,14 +3,6 @@
 # Institute: Beijing Institute Of Genomics, CAS.
 
 
-import sys
-import os
-
-os.chdir(os.getcwd())
-sys.path.append('../../')
-from myUtils.dataStep import *
-from myUtils.train import *
-from config import *
 import torch.nn as nn
 
 
@@ -32,15 +24,3 @@ class LeNet(nn.Module):
 
     def forward(self, x):
         return self.model(x)
-
-
-config = Config()
-
-if __name__ == "__main__":
-    trainLoader, testLoader, data_size = dataLoad_CIFAR(32, 32)
-    net = LeNet().to(config.DEVICE)
-    LOSS_FUNC = nn.CrossEntropyLoss().to(config.DEVICE)
-
-    train(net, trainLoader, testLoader, LOSS_FUNC, config, data_size[1], opt='sgd', model_name='lenet')
-
-# type [tensorboard --logdir=logs --port=6007] in Terminal, view train result via browser

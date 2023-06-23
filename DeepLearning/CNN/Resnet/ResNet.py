@@ -4,15 +4,6 @@
 
 
 import torch.nn as nn
-import os
-
-os.chdir(os.getcwd())
-import sys
-
-sys.path.append('../../')
-from myUtils.dataStep import *
-from myUtils.train import *
-from config import *
 
 
 class BottleNeck(nn.Module):
@@ -81,19 +72,3 @@ class ResNet(nn.Module):
 
     def forward(self, x):
         return self.model(x)
-
-
-config = Config()
-
-
-if __name__ == "__main__":
-    trainLoader, testLoader, data_size = dataLoad(config)
-    net = ResNet([3, 4, 6, 3], 5).to(config.DEVICE)
-    LOSS_FUNC = nn.CrossEntropyLoss().to(config.DEVICE)
-
-    train(net, trainLoader, testLoader, LOSS_FUNC, config, data_size[1], opt='sgd', model_name='resnet50')
-
-    # x = torch.randn(4, 3, 224, 224)
-    # net = ResNet([3,4,6,3], 5)
-    # out = net(x)
-    # print(out)

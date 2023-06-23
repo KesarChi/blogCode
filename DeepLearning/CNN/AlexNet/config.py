@@ -10,7 +10,7 @@ from torchvision import transforms
 class Config:
     def __init__(self):
         self.data_path = "../../../data/Flower"
-        self.EPOCH = 30
+        self.EPOCH = 2
         self.LR = 1e-3
         self.DEVICE = torch.device('cuda')
         self.data_trans = transforms.Compose([

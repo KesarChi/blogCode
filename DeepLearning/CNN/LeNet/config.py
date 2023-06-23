@@ -9,7 +9,7 @@ import torch
 class Config:
     def __init__(self):
         self.DEVICE = torch.device('cuda')
-        self.EPOCH = 10
+        self.EPOCH = 20
         self.LR = 1e-3
         self.MOMENTUM = 0.9
 
