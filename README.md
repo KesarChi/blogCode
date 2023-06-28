@@ -1,4 +1,5 @@
 ## Log
+- 2023.6.28: K-Means(Auto K selection)
 - 2023.6.27: K-Means
 - 2023.6.25: Grad-CAM
 - 2023.6.23: ResNet
